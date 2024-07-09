@@ -110,36 +110,40 @@ download_path = "C:\\Cat\\cache"
 install_path = "C:\\Cat"
 
 
-choice = input(f"""
-                {Fore.CYAN} ██████  █████  ████████      ██████ ██      ██ ███████ ███    ██ ████████ 
-                {Fore.CYAN}██      ██   ██    ██        ██      ██      ██ ██      ████   ██    ██    
-                {Fore.CYAN}██      ███████    ██        ██      ██      ██ █████   ██ ██  ██    ██    
-                {Fore.CYAN}██      ██   ██    ██        ██      ██      ██ ██      ██  ██ ██    ██    
-                {Fore.CYAN} ██████ ██   ██    ██         ██████ ███████ ██ ███████ ██   ████    ██    
-                            {Fore.LIGHTWHITE_EX}1 - Запустить
-                            {Fore.LIGHTWHITE_EX}2 - Сменить ник (по умолчанию - Cat)
-                            {Fore.LIGHTWHITE_EX}3 - Изменить оперативную память (по умолчанию 2048 МБ)
-{Fore.LIGHTWHITE_EX}Выбор: """)
+def main_menu():
+    while True:
+        choice = input(f"""
+                            {Fore.CYAN} ██████  █████  ████████      ██████ ██      ██ ███████ ███    ██ ████████ 
+                            {Fore.CYAN}██      ██   ██    ██        ██      ██      ██ ██      ████   ██    ██    
+                            {Fore.CYAN}██      ███████    ██        ██      ██      ██ █████   ██ ██  ██    ██    
+                            {Fore.CYAN}██      ██   ██    ██        ██      ██      ██ ██      ██  ██ ██    ██    
+                            {Fore.CYAN} ██████ ██   ██    ██         ██████ ███████ ██ ███████ ██   ████    ██    
+                                    {Fore.LIGHTWHITE_EX}1 - Запустить
+                                    {Fore.LIGHTWHITE_EX}2 - Сменить ник (по умолчанию - Cat)
+                                    {Fore.LIGHTWHITE_EX}3 - Изменить оперативную память (по умолчанию 2048 МБ)
+        {Fore.LIGHTWHITE_EX}Выбор: """)
 
-username = "Cat"
-ram = "2048"
-
-if choice == '2':
-    #сменяем никнейм за 423432 бобуксов
-    username = input(f"{Fore.LIGHTWHITE_EX}Введите ваш ник: ")
-    if not username:
         username = "Cat"
-elif choice == '3':
-    # выбираем оперативку на алиекспресс
-    ram = input(f"{Fore.LIGHTWHITE_EX}Введите количество оперативной памяти (в МБ): ")
-    if not ram:
         ram = "2048"
-elif choice == '1':
-    print(f"{Fore.LIGHTWHITE_EX}Ждите пока клиент запустится")
-    # пошёл нахуй иди делай грязь
-    pass
 
-# делаем грязь
-check_and_update_file(url, local_filename)
-setup_java_corretto(javaurl, download_path, install_path)
-run(ram=ram, username=username)
+        if choice == '2':
+            username = input(f"{Fore.LIGHTWHITE_EX}Введите ваш ник: ")
+            if not username:
+                username = "Cat"
+            continue
+        elif choice == '3':
+            ram = input(f"{Fore.LIGHTWHITE_EX}Введите количество оперативной памяти (в МБ): ")
+            if not ram:
+                ram = "2048"
+            continue
+        elif choice == '1':
+            print(f"{Fore.LIGHTWHITE_EX}Ждите пока клиент запустится")
+            # делаем грязь
+            check_and_update_file(url, local_filename)
+            setup_java_corretto(javaurl, download_path, install_path)
+            run(ram=ram, username=username)
+            continue  # cсделали грязь
+
+
+
+main_menu()
